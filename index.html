@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js"></script>
+</head>
+<body>
+	<script>
+		var app= angular.module("myApp", []);
+		app.controller("myCtrl", function($scope, $http){
+			$http.get("api/sample.json")
+			.then(function(response){
+				$scope.samples=response.data;
+			});
+		});
+
+	</script>
+	<div ng-app="myApp">
+		<div ng-controller="myCtrl">
+			<table border="1">
+				<tr>
+					<th>ID</th>
+					<th>NAME</th>
+					<th>TYPE</th>
+				</tr>
+				<tr ng-repeat= "sample in samples">
+					<td>{{sample.ID}}</td>
+					<td>{{sample.Name}}</td>
+					<td>{{sample.Type}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
